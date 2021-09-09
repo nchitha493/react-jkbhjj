@@ -10,10 +10,20 @@ export default function App() {
     store.dispatch({ type: COUNTER_DECREMENT });
     console.log(store.getState().count);
   };
+  const push = () => {
+    store.dispatch({ type: 'push', value: Math.random() });
+    console.log(store.getState());
+  };
+  const pop = () => {
+    store.dispatch({ type: 'pop' });
+    console.log(store.getState());
+  };
   return (
     <div>
       <button onClick={increment}> Increment </button>
       <button onClick={decrement}> Decrement </button>
+      <button onClick={push}> PUSH </button>
+      <button onClick={pop}> POP </button>
     </div>
   );
 }

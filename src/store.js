@@ -6,7 +6,7 @@ export const COUNTER_DECREMENT = 'counter/decrement';
 const initialState = {
   count: 0
 };
-const reducer = (state = initialState, action) => {
+const couterReducer = (state = initialState, action) => {
   switch (action.type) {
     case COUNTER_INCREMENT: {
       return { ...state, count: state.count + 1 };
@@ -21,8 +21,33 @@ const reducer = (state = initialState, action) => {
     }
   }
 };
+const arrayReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'push': {
+      const data = [...state];
+      data = data.push(action.value);
+      return [...data];
+      break;
+    }
+    case 'pop': {
+      const data = [...state];
+      data = data.pop();
+      return [...data];
+      break;
+    }
+    default: {
+      return state;
+    }
+  }
+};
 
-const store = redux.createStore(reducer);
+const combineReducer = (state = {}, action) => {
+  return {
+    counter: couterReducer(state.counter, action),
+    tester: arrayReducer(state.tester, action)
+  };
+};
+const store = redux.createStore(combineReducer);
 
 store.dispatch({ type: COUNTER_INCREMENT });
 export default store;
