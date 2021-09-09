@@ -25,13 +25,13 @@ const arrayReducer = (state = [], action) => {
   switch (action.type) {
     case 'push': {
       const data = [...state];
-      data = data.push(action.value);
+      data.push(action.value);
       return [...data];
       break;
     }
     case 'pop': {
       const data = [...state];
-      data = data.pop();
+      data.pop();
       return [...data];
       break;
     }
